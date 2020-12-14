@@ -54,7 +54,7 @@ for i in range(len(buses)):
         pass
 print(biggest_bus_pos, biggest_bus)
 
-for i in range(168820080614,100000000000000,int(biggest_bus)):
+for i in range(781238119138,100000000000000,int(biggest_bus)):
 #                              168820080614
 # for i in range(0,10000000, int(biggest_bus)):
     i = i - biggest_bus_pos
