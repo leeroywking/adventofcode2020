@@ -54,11 +54,47 @@ for i in range(len(buses)):
         pass
 print(biggest_bus_pos, biggest_bus)
 
-for i in range(781238119138,100000000000000,int(biggest_bus)):
-#                              168820080614
+# for i in range(219654121177954,10000000000000000,int(biggest_bus)):
+# #                                219654121177954
 # for i in range(0,10000000, int(biggest_bus)):
-    i = i - biggest_bus_pos
-    try:
-        check_time(i, buses)
-    except KeyboardInterrupt:
-        print("killed by user before finishing: ", i)
+#     i = i - biggest_bus_pos
+#     try:
+#         check_time(i, buses)
+#     except KeyboardInterrupt:
+#         print("killed by user before finishing: ", i)
+
+#545990309360
+buses_offset = []
+for i in range(len(buses)):
+    bus = buses[i]
+    if bus == "x":
+        pass
+    else:
+        buses_offset.append([int(bus), i])
+buses_offset.sort()
+buses_offset.reverse()
+print(buses_offset)
+
+max_factor = 1
+
+for bus_offset in buses_offset:
+    max_factor *= bus_offset[0]
+# print(max_factor)
+possibilities = [(x - buses_offset[0][1]) for x in range(0,max_factor//2,buses_offset[0][0]) if (x - buses_offset[0][1] + buses_offset[1][1]) % buses_offset[1][0] == 0]
+# possibilities.append(1068781)
+print(possibilities[0])
+print("checking", len(possibilities), "possibilities")
+print("min check value", min(possibilities), "max value", max(possibilities))
+for bus_offset in buses_offset:
+    temp_poss = []
+    for poss in possibilities:
+        if (poss + bus_offset[1]) % bus_offset[0] == 0:
+            # print("adding:", poss)
+            temp_poss.append(poss)
+    possibilities = temp_poss
+    print("length of possibilities after checking bus",bus_offset)
+
+print(len(possibilities), "remaining")
+print(1068781 in possibilities)
+print(possibilities)
+
